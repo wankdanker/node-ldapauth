@@ -131,7 +131,6 @@ static void EIO_Authenticate(uv_work_t* req)
 // Called on main event loop when background thread has completed
 static void EIO_AfterAuthenticate(uv_work_t* req) 
 {
-  ev_unref(EV_DEFAULT_UC);
   HandleScope scope;
   struct auth_request *auth_req = (struct auth_request *)(req->data);
   
@@ -248,8 +247,6 @@ static Handle<Value> Authenticate(const Arguments& args)
   // and call EIO_AfterAuthententicate in the foreground when done
   uv_queue_work(uv_default_loop(), work_req, EIO_Authenticate, EIO_AfterAuthenticate);
 
-  ev_ref(EV_DEFAULT_UC);
-
   return Undefined();
 }
 
@@ -356,7 +353,6 @@ static void EIO_Search(uv_work_t* req)
 static void EIO_AfterSearch(uv_work_t* req) 
 {
 
-  ev_unref(EV_DEFAULT_UC);
   HandleScope scope;
   struct search_request *search_req = (struct search_request *)(req->data);
 
@@ -379,8 +375,6 @@ static Handle<Value> Search(const Arguments &args)
   work_req->data = search_req;
 
   uv_queue_work(uv_default_loop(), work_req, EIO_Search, EIO_AfterSearch);
-
-  ev_ref(EV_DEFAULT_UC);
 
   return Undefined();
 }
