@@ -1,0 +1,25 @@
+{
+  "name": "ldapquth",
+  "version": "0.0.0",
+  "description": "Authentication by LDAP",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wankdanker/node-ldapauth.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "gypfile": true,
+  "readmeFilename": "README.md",
+  "gitHead": "c6f2115ee74dd21c9e22ff3617f273cd45bc7140",
+  "dependencies": {
+    "bindings": "~1.1.0"
+  }
+}
