@@ -1,3 +1,3 @@
 #!/bin/sh
 
-node-waf configure build && cp build/Release/ldapauth.node ./
+node-gyp configure build && cp build/Release/ldapauth.node ./
