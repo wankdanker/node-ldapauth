@@ -107,7 +107,7 @@ static void EIO_Authenticate(uv_work_t* req)
   
   // Connect to LDAP server
   LDAP *ldap = ldap_init(auth_req->host, auth_req->port);
-  unsigned long int len = 5 + sizeof(auth_req->scheme) + sizeof(auth_req->host) + sizeof(auth_req->port);
+  unsigned long int len = 6 + (sizeof(auth_req->scheme) + sizeof(auth_req->host) + sizeof(auth_req->port)) * 2;
   char uri[len];
   sprintf(uri, "%s://%s:%d/", auth_req->scheme, auth_req->host, auth_req->port);
 
