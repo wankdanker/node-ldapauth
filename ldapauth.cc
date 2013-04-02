@@ -245,7 +245,7 @@ static Handle<Value> Authenticate(const Arguments& args)
 
   // Use uv_queue_work to invoke EIO_Authenticate() in background thread pool
   // and call EIO_AfterAuthententicate in the foreground when done
-  uv_queue_work(uv_default_loop(), work_req, EIO_Authenticate, EIO_AfterAuthenticate);
+  uv_queue_work(uv_default_loop(), work_req, EIO_Authenticate, (uv_after_work_cb)EIO_AfterAuthenticate);
 
   return Undefined();
 }
@@ -374,7 +374,7 @@ static Handle<Value> Search(const Arguments &args)
   uv_work_t *work_req = (uv_work_t *) (calloc(1, sizeof(uv_work_t)));
   work_req->data = search_req;
 
-  uv_queue_work(uv_default_loop(), work_req, EIO_Search, EIO_AfterSearch);
+  uv_queue_work(uv_default_loop(), work_req, EIO_Search, (uv_after_work_cb)EIO_AfterSearch);
 
   return Undefined();
 }
@@ -387,3 +387,5 @@ init (Handle<Object> target)
   target->Set(String::New("authenticate"), FunctionTemplate::New(Authenticate)->GetFunction());
   target->Set(String::New("search"), FunctionTemplate::New(Search)->GetFunction());
 }
+
+NODE_MODULE(ldapauth, init);
