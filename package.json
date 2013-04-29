@@ -1,5 +1,5 @@
 {
-  "name": "ldapquth",
+  "name": "ldapauth",
   "version": "0.0.0",
   "description": "Authentication by LDAP",
   "main": "index.js",
